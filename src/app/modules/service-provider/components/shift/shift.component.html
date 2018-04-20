@@ -1,0 +1,58 @@
+<main>
+    <!-- Start Shift -->
+    <div class="container" style="padding-top:4rem; padding-bottom:4rem;" *ngIf="!shiftStarted">
+        <div class="card mx-auto" style="width: 28rem;">
+            <div class="card-body pl-3" style="padding-top: 4rem;">
+                <div class="form-header text-center rounded" style="height: 4rem;">
+                    <h3>
+                        <i class="fa fa-id-card prefix grey-text"></i> Service Provider Shift</h3>
+                    <hr>
+                </div>
+                <div class="md-form">
+                    <i class="fa fa-angle-double-up prefix grey-text pr-3"></i>
+                    <div class="dropdown pl-5" dropdown>
+                        <button dropdownToggle class="btn btn-primary dropdown-toggle waves-light" type="button" mdbRippleRadius>
+                            {{ queueDropdownLegend }}
+                        </button>
+                        <div class="dropdown-menu dropdown-primary ml-5">
+                            <a class="dropdown-item" *ngFor="let queue of queues" (click)="onQueueSelected(queue)">{{ queue.name }}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="md-form" *ngIf="showCounters">
+                    <i class="fa fa-desktop prefix grey-text pr-3"></i>
+                    <div class="dropdown pl-5" dropdown>
+                        <button dropdownToggle class="btn btn-primary dropdown-toggle waves-light" type="button" mdbRippleRadius>
+                            {{ counterDropdownLegend }}
+                        </button>
+                        <div class="dropdown-menu dropdown-primary ml-5">
+                            <a class="dropdown-item" *ngFor="let counter of counters" (click)="onCounterSelected(counter)">{{ counter.counterName }}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="md-form" *ngIf="showCounters">
+                    <div class="text-center pt-3">
+                        <button (click)="onStartShift()" class="btn btn-primary waves-light" [disabled]="disableStartShiftButton" mdbRippleRadius>Start Shift</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Finish Shift -->
+    <div class="container" style="padding-top:4rem; padding-bottom:4rem;" *ngIf="shiftStarted">
+        <div class="card mx-auto" style="width: 28rem;">
+            <div class="card-body pl-3" style="padding-top: 4rem;">
+                <div class="form-header text-center rounded" style="height: 4rem;">
+                    <h3>
+                        <i class="fa fa-id-card prefix grey-text"></i> Service Provider Shift</h3>
+                    <hr>
+                </div>
+                <div class="md-form">
+                    <div class="text-center pt-3">
+                        <button (click)="onFinishShift()" class="btn btn-primary waves-light" mdbRippleRadius>Finish Shift</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

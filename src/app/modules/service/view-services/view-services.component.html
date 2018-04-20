@@ -1,0 +1,30 @@
+<div class="container">
+
+  <h1>List of Services</h1>
+  <hr>
+
+  <table class="table table-condensed">
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Average minutes</th>
+      <th>Weight</th>
+    </tr>
+    <tr *ngFor='let service of services'>
+      <td>{{ service.name }}</td>
+      <td>{{ service.description }}</td>
+      <td>
+        <input [(ngModel)]="service.averageMinutes" type="number">
+      </td>
+      <td>
+        <input [(ngModel)]="service.weight" type="number">
+      </td>
+    </tr>
+  </table>
+  <div class="text-center pb-3">
+    <button (click)="onClickSave()" class="btn btn-unique waves-light" mdbRippleRadius>Save
+      <i class="fa fa-save ml-1"></i>
+    </button>
+  </div>
+  <div class="pb-5"></div>
+</div>

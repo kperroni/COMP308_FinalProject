@@ -1,0 +1,33 @@
+<div class="container">
+  <h1>Tickets Details</h1>
+  <hr>
+
+  <div class="form-group row">
+    <label class="col col-form-label">Ticket Number</label>
+    <label class="col col-form-label">{{ activeTicket.ticketNumber }}</label>
+  </div>
+  <!-- <div class="form-group row">
+    <label class="col col-form-label">Student Number</label>
+    <label class="col col-form-label">{{ activeTicket.studentNumber }}</label>
+  </div> -->
+  <div class="form-group row">
+    <label class="col col-form-label">Subject</label>
+    <label class="col col-form-label">{{ activeTicket.subject }}</label>
+  </div>
+  <div class="form-group row">
+    <label class="col col-form-label">Description</label>
+    <label class="col col-form-label">{{ activeTicket.description }}</label>
+  </div>
+  <div class="form-group row">
+    <label class="col col-form-label">Status</label>
+    <label class="col col-form-label">{{ activeTicket.status }}</label>
+  </div>
+  <div class="form-group row">
+    <label class="col col-form-label">Preceding Tickets</label>
+    <label class="col col-form-label">{{ activeTicket.ticketCount }}</label>
+  </div>
+  <div class="form-group row">
+    <label class="col col-form-label">Average Waiting Time</label>
+    <label class="col col-form-label">
+      <label ng-if="activeTicket.hours > 0">{{ activeTicket.hours }} hr(s)</label> {{activeTicket.minutes}} min(s)</label>
+  </div>

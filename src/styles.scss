@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files 
+by using @import 'path/to/cssFile.css (which should be inside the public folder in app)' 
+*/
+
+// Example of overwriting primary color
+
+/*$theme-colors: (
+    "primary": #d95700,
+);*/
+
+// Variable Overrides 
+@import "../node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap";
+@import "../node_modules/angular5-toaster/dist/toaster";
+//@import "../node_modules/angular-bootstrap-md/scss/angular/mdb-angular-free";
+// Bootstrap Sass Imports
+// Here the styles can be customized by overwriting the bootstrap and angular stylesheet

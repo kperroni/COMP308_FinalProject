@@ -1,0 +1,105 @@
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark bg-primary scrolling-navbar" [containerInside]="false">
+    <logo>
+        <a class="logo navbar-brand" href="#">
+            <strong>Qme</strong>
+        </a>
+    </logo>
+    <links>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active waves-light" mdbRippleRadius>
+                <a class="nav-link" href="#">Home
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+
+            <ng-container *ngIf="(user | async); let user;">
+
+                <li class="nav-item waves-light" mdbRippleRadius>
+                    <a class="nav-link" href="/createTicket">Create Ticket</a>
+                </li>
+
+                <ng-container *ngIf="user.type === 'E'">
+
+                    <li class="nav-item waves-light" mdbRippleRadius>
+                        <a class="nav-link" href="/shift">Shifts</a>
+                    </li>
+                    <li class="nav-item waves-light" mdbRippleRadius>
+                        <a class="nav-link" href="/viewActiveTickets">Active Tickets</a>
+                    </li>
+
+                    <li class="nav-item waves-light" mdbRippleRadius>
+                        <a class="nav-link" href="/getCurrentTicket">Resolve Next Ticket</a>
+                    </li>
+                    <li class="nav-item waves-light" mdbRippleRadius>
+                        <a class="nav-link" href="/viewServices">Services</a>
+                    </li>
+                </ng-container>
+
+                <ng-container *ngIf="user.type === 'S'">
+                    <li class="nav-item waves-light" mdbRippleRadius>
+                        <a class="nav-link" href="/viewStudentTicket">Active Ticket</a>
+                    </li>
+
+                    <!-- <li class="nav-item waves-light" mdbRippleRadius>
+                        <a class="nav-link" href="/viewPrecedingTickets">Preceding Ticket</a>
+                    </li> -->
+                </ng-container>
+
+                <li class="nav-item waves-light" mdbRippleRadius>
+                    <a class="nav-link" (click)="onLogOut()">Logout</a>
+                </li>
+
+            </ng-container>
+
+            <ng-container *ngIf="(user | async) === null">
+                <!-- <li class="nav-item waves-light" mdbRippleRadius>
+                    <input [(ng-model)]="ticketNumber" type="text" id="Ticket Number" placeholder="Ticket Number" mdbActive>
+                </li> -->
+                <li class="nav-item waves-light" mdbRippleRadius>
+                    <a class="nav-link" (click)="onAlertShow()">Show Guest Ticket</a>
+                </li>
+
+                <li class="nav-item waves-light" mdbRippleRadius>
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+            </ng-container>
+        </ul>
+        <ul class="navbar-nav nav-flex-icons">
+            <li class="nav-item waves-light" mdbRippleRadius>
+                <a class="nav-link">
+                    <i class="fa fa-facebook"></i>
+                </a>
+            </li>
+            <li class="nav-item waves-light" mdbRippleRadius>
+                <a class="nav-link">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </li>
+            <li class="nav-item waves-light" mdbRippleRadius>
+                <a class="nav-link">
+                    <i class="fa fa-instagram"></i>
+                </a>
+            </li>
+        </ul>
+    </links>
+</mdb-navbar>
+
+<div class="alert alert-primary" role="alert" id="alertTicketInput">
+    <form class="form-inline">
+        <div class="form-group">
+            <div class="col-sm-4">
+                <input class="form-control" [(ng-model)]="ticketNumber" id="guestticketNumber" type="number" placeholder="Ticket Number">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-4">
+                <input class="form-control" (click)="showGuestTicket()" type="button" value="Show Ticket">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-4">
+                <input class="form-control" (click)="onAlertHide()" id="ticketNumber" type="button" value="Close">
+            </div>
+        </div>
+    </form>
+</div>

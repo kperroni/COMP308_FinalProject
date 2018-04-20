@@ -1,0 +1,77 @@
+<div class="container">
+    <p class="h5 text-center mb-4">Creation of a new ticket</p>
+
+    <div class="md-form" *ngIf="user.type == 'E'">
+        <div class="md-form">
+            <input type="radio" value="Student" name="Student" [(ngModel)]="typeCustomer"> Student
+            <input type="radio" value="Guest" name="Guest" [(ngModel)]="typeCustomer"> Guest
+        </div>
+
+        <div class="md-form" *ngIf="typeCustomer == 'Student'">
+            <i class="fa fa-credit-card prefix grey-text"></i>
+            <input [(ngModel)]="customer.studentNumber" (keyup)="onKeyup($event)" type="text" id="studentNumber" name="studentNumber"
+                class="form-control" mdbActive>
+            <label for="studentNumber">Student number</label>
+        </div>
+
+        <div class="md-form" *ngIf="typeCustomer == 'Guest'">
+            <div class="md-form">
+                <i class="fa fa-user prefix grey-text"></i>
+                <input [(ngModel)]="customer.firstName" type="text" id="firstname" name="firstname" class="form-control" mdbActive>
+                <label for="form3">First name</label>
+            </div>
+
+            <div class="md-form">
+                <i class="fa fa-user prefix grey-text"></i>
+                <input [(ngModel)]="customer.lastName" type="text" id="lastname" name="lastname" class="form-control" mdbActive>
+                <label for="lastname">Last name</label>
+            </div>
+
+            <div class="md-form">
+                <i class="fa fa-envelope prefix grey-text"></i>
+                <input [(ngModel)]="customer.email" type="text" id="email" name="email" class="form-control" mdbActive>
+                <label for="email">Email</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="md-form" *ngIf="user.type == 'S' || typeCustomer == 'Student'">
+        <i class="fa fa-user prefix grey-text"></i>
+        <input [(ngModel)]="studentInformation" type="text" id="studentInformation" name="studentInformation" class="form-control"
+            readonly mdbActive>
+        <label for="form3">Student information</label>
+    </div>
+
+    <div class="form-group">
+        <i class="fa fa-code-fork prefix grey-text"></i>
+        <label for="form2">Service</label>
+        <select [(ngModel)]="ticket.serviceId" id="form2" name="serviceId" required class="selectpicker" data-style="btn-primary"
+            mdbActive>
+            <option *ngFor='let service of services' [value]="service._id">{{ service.name }}</option>
+        </select>
+    </div>
+
+    <div class="md-form">
+        <i class="fa fa-tag prefix grey-text"></i>
+        <input [(ngModel)]="ticket.subject" type="text" required #subject="ngModel" name="subject" id="subject" class="form-control"
+            mdbActive>
+        <div *ngIf="subject.invalid && (subject.dirty || subject.touched)" class="alert alert-danger">
+            <div *ngIf="subject.errors.required">
+                Subject is required
+            </div>
+        </div>
+        <label for="subject">Subject</label>
+    </div>
+
+    <div class="md-form">
+        <i class="fa fa-pencil prefix grey-text"></i>
+        <textarea [(ngModel)]="ticket.description" type="text" id="form8" class="md-textarea" style="height: 100px" mdbActive></textarea>
+        <label for="form8">Details of your need</label>
+    </div>
+
+    <div class="text-center">
+        <button (click)="onClickCreateTicket()" class="btn btn-unique waves-light" mdbRippleRadius>Save
+            <i class="fa fa-paper-plane-o ml-1"></i>
+        </button>
+    </div>
+</div>

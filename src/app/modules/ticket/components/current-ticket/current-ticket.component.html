@@ -1,0 +1,57 @@
+<div class="container">
+  <form action="ticket/updateCurrentTicket" *ngIf="currentTicket; else noActiveTickets" method="POST">
+    <p class="h4 text-center mb-4">Resolve Ticket</p>
+
+    <label for="ticketNumber" class="grey-text">Ticket Number</label>
+    <input type="text" name="ticketNumber" class="form-control" value="{{ currentTicket.ticketNumber }}" disabled>
+    <br>
+    <label for="status" class="black-text">Ticket Status</label>
+    <select [(ngModel)]="currentTicket.status" class="mdb-select" name="status">
+      <option value="A" selected>Active</option>
+      <option value="S">Skipped</option>
+      <option value="D">Done/Completed</option>
+    </select>
+    <br>
+    <br>
+    <label for="serviceId" class="black-text">Service</label>
+    <select [(ngModel)]="currentTicket.serviceId" name="serviceId" class="mdb-select">
+      <option *ngFor='let service of services' [value]="service._id">{{ service.name }}</option>
+    </select>
+    <br>
+    <label for="username" class="grey-text">Submitted by</label>
+    <input type="text" name="username" class="form-control" value="{{ currentTicket.username }}" disabled>
+    <br>
+    <label for="subject" class="grey-text">Subject</label>
+    <input type="text" name="subject" class="form-control" value="{{ currentTicket.subject }}" disabled>
+    <br>
+    <label for="description" class="grey-text">Ticket Description</label>
+    <textarea name="description" class="form-control" rows="3" readonly>{{ currentTicket.description }}</textarea>
+    <br>
+    <div style="display: none;">
+      <label for="currentShiftId" class="grey-text">Shift ID</label>
+      <input type="text" [(ngModel)]="currentTicket.currentShiftId" name="currentShiftId" class="form-control" value="{{ currentShift._id }}"
+        disabled>
+      <br>
+    </div>
+    <label for="actionsHistory" class="black-text">Actions Taken (History)</label>
+    <select name="actionsHistory" [(ngModel)]="selectedAction" class="mdb-select">
+      <option *ngFor='let detail of currentTicket.details; let i = index' [value]="detail.actions">Action #{{ i + 1 }}</option>
+    </select>
+    <textarea [(ngModel)]="selectedAction" name="oldActions" class="form-control" rows="4" readonly></textarea>
+    <br>
+    <label for="actionsHistory" class="black-text">New Actions Taken</label>
+    <textarea [(ngModel)]="currentTicket.detailActions" name="detailActions" class="form-control" rows="4"></textarea>
+    <br>
+    <div class="text-center mt-4">
+      <button (click)="onClickUpdateTicket()" class="btn btn-unique">Update Ticket</button>
+    </div>
+    <br>
+    <div class="text-center mt-4">
+      <button (click)="onClickCallTicket()" class="btn btn-info">Call Ticket</button>
+    </div>
+  </form>
+  <ng-template #noActiveTickets>
+    <ng-container *ngIf="currentShift; else noShift">There are no active tickets in the current queue.</ng-container>
+  </ng-template>
+  <ng-template #noShift>Please start a shift!</ng-template>
+</div>

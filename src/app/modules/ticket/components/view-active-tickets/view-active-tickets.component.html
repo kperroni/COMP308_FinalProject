@@ -1,0 +1,34 @@
+<div class="container">
+  <h1>Active Tickets in Queue</h1>
+  <hr>
+
+  <table class="table table-condensed">
+    <tr>
+      <th>Ticket Number</th>
+      <th>Student Number</th>
+      <th>Subject</th>
+      <th>Description</th>
+      <th>Status</th>
+    </tr>
+
+    <tr *ngFor="let ticket of activeTickets">
+
+      <td>
+        <a class="nav-link">{{ ticket.ticketNumber }}</a>
+      </td>
+      <td>
+        <a class="nav-link">{{ ticket.studentNumber }}</a>
+      </td>
+      <td>
+        <a class="nav-link">{{ ticket.subject }}</a>
+      </td>
+      <td>
+        <a class="nav-link">{{ ticket.description }}</a>
+      </td>
+      <td>
+        <a class="nav-link">{{ ticket.status }}</a>
+      </td>
+
+    </tr>
+  </table>
+</div>
