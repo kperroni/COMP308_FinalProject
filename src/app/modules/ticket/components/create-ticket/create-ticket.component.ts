@@ -59,6 +59,7 @@ export class CreateTicketComponent implements OnInit {
           this.studentInformation = this.user.firstName + " " + this.user.lastName;
           this.studentService.getStudentByUserId({ userId: this.user._id }).subscribe(
             (data: any) => {
+              console.log(data);
               if (data != null) {
                 this.ticket.studentId = data._id;
                 this.studentInformation = data.studentNumber + " - " + this.studentInformation + ", program: " + data.program;

@@ -7,6 +7,7 @@
     <label class="col col-form-label">Ticket ID</label>
     <label class="col col-form-label">{{ activeTicket._id }}</label>
   </div> -->
+  <ng-container *ngIf="activeTicket">
   <div class="form-group row">
     <label class="col col-form-label">Ticket Number</label>
     <label class="col col-form-label">{{ activeTicket.ticketNumber }}</label>
@@ -39,3 +40,4 @@
   <div class="form-group row">
     <a class="btn btn-danger" (click)="onCancelTicket()">Cancel Ticket</a>
   </div>
+</ng-container>

@@ -157,7 +157,6 @@ exports.cancelTicket = function (req, res, next) {
         if (err) {
             return res.json({ message: "0", err: err });
         } else {
-            sendNotification(req.body.serviceId);
             res.json({ message: "1", ticket: retobj });
         }
     });
@@ -276,12 +275,11 @@ exports.getPrecedingTicketsInQueue = function (req, res, next) {
 
 exports.viewStudentTicket = function (req, res, next) {
     var student = req.body;
-
     // Use the 'User' instance's 'find' method to retrieve a new user document
     Ticket.findOne({
         status: 'A',
-        studentId: student._id,
-        studentId: { $ne: null }
+        studentId: student.body._id,
+        //studentId: { $ne: null }
     }, function (err, ticket) {
         if (err) {
             return next(err);
@@ -292,6 +290,7 @@ exports.viewStudentTicket = function (req, res, next) {
 }
 
 exports.getTicketByTicketNumber = function (req, res, next) {
+    console.log(req.body.ticketNumber);
     Ticket.findOne({ ticketNumber: req.body.ticketNumber }).exec(function (err, ticket) {
         const ret = {};
         if (err) {
