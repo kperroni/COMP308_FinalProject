@@ -144,6 +144,25 @@ exports.updateCurrentTicket = function (req, res, next) {
     });
 };
 
+exports.cancelTicket = function (req, res, next) {
+    const ret = {};
+	console.log("body", req.body);
+    var query = { "_id": req.body.id },
+        updateQ = {
+            '$set': { 'status': 'C'}
+        },
+        options = { new: true };
+
+    Ticket.findOneAndUpdate(query, updateQ, options, function (err, retobj) {
+        if (err) {
+            return res.json({ message: "0", err: err });
+        } else {
+            sendNotification(req.body.serviceId);
+            res.json({ message: "1", ticket: retobj });
+        }
+    });
+};
+
 exports.viewActiveTickets = function (req, res, next) {
 
     // Use the 'User' instance's 'find' method to retrieve a new user document

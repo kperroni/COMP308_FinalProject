@@ -36,3 +36,6 @@
     <label class="col col-form-label">
       <label ng-if="activeTicket.hours > 0">{{ activeTicket.hours }} hr(s)</label> {{activeTicket.minutes}} min(s)</label>
   </div>
+  <div class="form-group row">
+    <a class="btn btn-danger" (click)="onCancelTicket()">Cancel Ticket</a>
+  </div>

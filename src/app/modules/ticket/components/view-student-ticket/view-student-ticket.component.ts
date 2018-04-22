@@ -85,5 +85,9 @@ export class ViewStudentTicketComponent implements OnInit {
       }
     );
   }
-
+  
+  onCancelTicket(){
+	  this.ticketService.updateToCancel({id: this.activeTicket._id}).subscribe((data: any) => this.router.navigate[('home')]
+	  );
+	  }
 }

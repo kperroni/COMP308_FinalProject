@@ -47,4 +47,8 @@ export class TicketService {
       console.log(data);
     });
   }
+  
+  updateToCancel(body){
+	return this.http.post('ticket/cancelTicket', body);  
+  }
 }

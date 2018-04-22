@@ -17,4 +17,6 @@ module.exports = function (app) {
     app.post('/ticket/getTicketByTicketNumber', ticketController.getTicketByTicketNumber);
 
     app.post('/ticket/getActiveTicketsInQueue', ticketController.getActiveTicketsInQueue);
+	
+	app.post('/ticket/cancelTicket', ticketController.cancelTicket);
 };
